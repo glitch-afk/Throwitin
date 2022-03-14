@@ -23,9 +23,9 @@ const startProject = (props: Props) => {
   const { createProject } = useAccountContext();
   const [formStep, setFormStep] = useState(0);
 
-  const[editorText, setEditorText] = useState('')
-  const[images, setImages] = useState<File[]>()
-  const[logo, setLogo] = useState<File>()
+  const [editorText, setEditorText] = useState("");
+  const [images, setImages] = useState<File[]>();
+  const [logo, setLogo] = useState<File>();
 
   const { register, handleSubmit, watch, control } = useForm();
 
@@ -61,37 +61,14 @@ const startProject = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     let project: Project = {} as Project;
-    project.fundRaisingDeadline = parseInt((data.project_duration.getTime() / 1000).toFixed(0))
-    project.goalAmount = data.funding_amt
-    project.title = data.title
-    project.uri = ''
-    project.desc = editorText
-    project.category = data.category
-    project.twitter = data.twitter
-    project.discord = data.discord
-    project.tagline = data.tagline
-    project.video = data.video
-    project.url = data.url
-    project.multiple_images = images as File[]
-    project.logo = logo
-    console.log(project, editorText)
-    let promise = createProject(project);
-    toast.promise(promise, 
-			{
-				loading: 'Loading',
-				success: (data) => `Successfully Created`,
-				error: (err) => `This just happened: ${err.message}`,
-			  },
-			  {
-				style: {
-				  minWidth: '250px',
-				},
-				success: {
-				  duration: 5000,
-				  icon: '🔥',
-				},
-			  }
-		);
+    project.fundRaisingDeadline = parseInt(
+      (data.project_duration.getTime() / 1000).toFixed(0)
+    );
+    project.goalAmount = data.funding_amt;
+    project.title = data.title;
+    project.uri = "";
+    console.log(project);
+    createProject(project);
     console.log(data);
   };
 
@@ -145,7 +122,7 @@ const startProject = (props: Props) => {
           )}
         </ul>
       </div>
-      <div className="flex flex-col items-center justify-center py-10">
+      <div className="flex flex-col items-center justify-center py-10 text-center">
         <div className="text-3xl font-bold mb-2 font-clash">
           {PageHeadings[formStep].title}
         </div>
@@ -199,7 +176,7 @@ const startProject = (props: Props) => {
                   </button>
                 </div>
               ) : (
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between space-x-2 md:space-x-0">
                   {/* back */}
                   {
                     <button
@@ -226,7 +203,7 @@ const startProject = (props: Props) => {
           )}
         </form>
         {/* uncomment string below to see the result on the page */}
-        <pre>{JSON.stringify(watch(), null, 2)}</pre> 
+        <pre>{JSON.stringify(watch(), null, 2)}</pre>
       </div>
       <Footer />
     </>
