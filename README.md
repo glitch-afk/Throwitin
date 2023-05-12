@@ -1,3 +1,3 @@
-Throwitin
+# Throwitin
 
-🎊 WON $5000 bounty from [Quertbook](https://openquest.xyz/)
+## 🎊 WON bounty from [Questbook](https://www.questbook.app/)
